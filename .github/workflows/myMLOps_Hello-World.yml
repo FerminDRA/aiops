@@ -20,6 +20,8 @@ jobs:					# A workflow run is made up of one or more jobs,
   build:
     runs-on: ubuntu-latest 	# The type of runner that the job will run on. 
     container: adsoft/aiops:latest # It is used to to create a container to run any
+    #Aqui obtiene un contenedo en el cual ya tiene python, tensorFlow etc, ya uqe instalarlo cada
+    #vez que se ejecute consume mucho tiempo
   # steps in a job that don't already specify a 
   # container.
     # Steps represent a sequence of tasks that will be executed as part of the job.
@@ -40,3 +42,5 @@ jobs:					# A workflow run is made up of one or more jobs,
     - name: hello-world		# A name for your step to display on GitHub
       run: echo “hello world workflows …” # It Runs command-line programs using the 
   # operating system's shell.
+    - name: run model 
+      run: python linear-model.py
