@@ -70,13 +70,13 @@ jobs:					# A workflow run is made up of one or more jobs,
       run: sed -i 's/{model_name}/${{secrets.MODEL_NAME}}/g' manifests/linear_models_k8s.yaml
 
     - name: update _ by - 
-      run: sed -i 's/_/-/g' manifests/linear_model_k8s.yaml
+      run: sed -i 's/_/-/g' manifests/linear_models_k8s.yaml
 
     - name: update sha in k8
-      run: sed -i 's/{github.sha}/${{ github.sha }}/g' manifests/linear_model_k8s.yaml
+      run: sed -i 's/{github.sha}/${{ github.sha }}/g' manifests/linear_models_k8s.yaml
 
     - name: list  
-      run: cat manifests/linear_model_k8s.yaml
+      run: cat manifests/linear_models_k8s.yaml
 
     - uses: okteto/context@2.7.0
       with:
@@ -88,6 +88,6 @@ jobs:					# A workflow run is made up of one or more jobs,
         KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
       with:
         namespace: ${{secrets.OKTETO_NAMESPACE }}
-        manifest: manifests/linear_model_k8s.yaml
+        manifest: manifests/linear_models_k8s.yaml
         tag: ${{ secrets.DOCKER_USERNAME }}/tensorflow_${{secrets.MODEL_NAME}}:${{ github.sha }}
 
